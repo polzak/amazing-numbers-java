@@ -8,8 +8,9 @@ public class Main {
         boolean natural = false;
         boolean divisibleBy7 = false;
         boolean endsWith7 = false;
-        String buzz = "It is a Buzz number.";
-        String exp = "";
+        boolean even = false;
+        boolean buzz = false;
+        boolean duck = false;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -17,40 +18,39 @@ public class Main {
         int n = scanner.nextInt();
 
         if (n <= 0) {
-            exp = "This number is not natural!";
+            System.out.println("This number is not natural!");
         } else {
             natural = true;
         }
 
         if (natural) {
+            // decide if it is even or odd
             if (n % 2 == 0) {
-                System.out.println("This number is Even.");
-            } else {
-                System.out.println("This number is Odd.");
+                even = true;
             }
 
+            // decide if it is buzz
             if (n % 7 == 0) {
                 divisibleBy7 = true;
             }
-
             int d = n % 10;
             if (d == 7) {
                 endsWith7 = true;
             }
-
-            if (divisibleBy7 && endsWith7) {
-                exp = n + " is divisible by 7 and ends with 7.";
-            } else if (divisibleBy7) {
-                exp = n + " is divisible by 7.";
-            } else if (endsWith7) {
-                exp = n + " ends with 7.";
-            } else {
-                buzz = "It is not a Buzz number.";
-                exp = n + " is neither divisible by 7 nor does it end with 7.";
+            if (divisibleBy7 || endsWith7) {
+                buzz = true;
             }
+
+            String stringNumber = "" + n;
+            if (stringNumber.contains("0")) {
+                duck = true;
+            }
+
+            System.out.println("Properties of " + n);
+            System.out.println("even: " + even);
+            System.out.println("odd: " + !even);
+            System.out.println("buzz: " + buzz);
+            System.out.println("duck: " + duck);
         }
-        System.out.println(buzz);
-        System.out.println("Explanation:");
-        System.out.println(exp);
     }
 }
